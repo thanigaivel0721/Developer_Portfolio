@@ -1,8 +1,13 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
-  output: 'export', // Static export
-  images: {
-    unoptimized: true, // Disable image optimization for static export
-  },
+  // Set the base path for GitHub Pages if deployed to a subdirectory
   basePath: '/Developer_Portfolio',  // Replace with your GitHub repository name
-  assetPrefix: '/Developer_Portfolio/', // Add this to make sure assets are loaded correctly
+
+  // Add trailingSlash to ensure that your paths end with a slash
+  trailingSlash: true,
+
+  // If you're using Image Optimization API, you might need to configure it like this
+  images: {
+    unoptimized: true, // Disable Next.js image optimization to prevent issues with static export
+  },
 }
