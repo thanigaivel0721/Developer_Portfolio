@@ -1,26 +1,8 @@
-const path = require('path')
- 
 module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
+  output: 'export', // Static export
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media.dev.to',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media2.dev.to',
-        pathname: '**',
-      },
-    ],
+    unoptimized: true, // Disable image optimization for static export
   },
+  basePath: '/Developer_Portfolio',  // Replace with your GitHub repository name
+  assetPrefix: '/Developer_Portfolio/', // Add this to make sure assets are loaded correctly
 }
