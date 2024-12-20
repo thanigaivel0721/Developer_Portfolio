@@ -1,26 +1,11 @@
-const path = require('path')
- 
 module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media.dev.to',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media2.dev.to',
-        pathname: '**',
-      },
-    ],
-  },
-}
+  generateEtags: false,
+  headers: async () => [
+    {
+      source: '/_next/static/(.*)',
+      headers: [
+        { key: 'Cache-Control', value: 'no-store, must-revalidate' },
+      ],
+    },
+  ],
+};
