@@ -1,9 +1,5 @@
-const isProd = process.env.NODE_ENV === 'production';
-
 module.exports = {
   generateEtags: false,
-  assetPrefix: isProd ? '/<Developer_Portfolio>/' : '',
-  basePath: isProd ? '/<Developer_Portfolio>' : '',
   headers: async () => [
     {
       source: '/_next/static/(.*)',
@@ -12,4 +8,9 @@ module.exports = {
       ],
     },
   ],
+};const isProd = process.env.NODE_ENV === "production";
+
+module.exports = {
+  assetPrefix: isProd ? '/Developer_Portfolio/' : '',
+  basePath: isProd ? '/Developer_Portfolio' : '',
 };
