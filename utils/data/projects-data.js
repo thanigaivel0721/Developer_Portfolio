@@ -8,7 +8,7 @@ export const projectsData = [
         id: 1,
         name: 'SkillMentors',
         description: "Skillmenter is a mobile application designed to help college students enhance their skills and connect with industry professionals. The app provides various learning resources, opportunities for skill development, and a platform to track progress. Built using Flutter for a seamless cross-platform experience, Skillmenter leverages Laravel as its backend framework to ensure a robust and scalable infrastructure. The app utilizes REST APIs for efficient communication between the frontend and backend, providing users with real-time updates and smooth navigation. Whether you're looking to improve your technical skills or gain insights from professionals, Skillmenter is your gateway to personal and professional growth.",
-        tools: ['RestApi','Laravel','PP'],
+        tools: ['RestApi','Laravel','php'],
         role: 'Backend Developer',
         code: '',
         demo: '',
