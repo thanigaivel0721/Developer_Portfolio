@@ -6,6 +6,7 @@ import Experience from "./components/homepage/experience";
 import HeroSection from "./components/homepage/hero-section";
 import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
+import ScrollToTop from "./components/helper/scroll-to-top";
 
 async function getData() {
   try {
