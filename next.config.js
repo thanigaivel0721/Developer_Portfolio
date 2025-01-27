@@ -1,11 +1,9 @@
-module.exports = {
-  generateEtags: false,
-  headers: async () => [
-    {
-      source: '/_next/static/(.*)', 
-      headers: [
-        { key: 'Cache-Control', value: 'no-store, must-revalidate' },
-      ],
-    },
-  ],
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true, // Disable image optimization for static export
+  },
 };
+
+module.exports = nextConfig;
