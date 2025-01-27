@@ -8,7 +8,6 @@ import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
 import dynamic from "next/dynamic";
 
-// Dynamically import ScrollToTop for client-side rendering only
 const ScrollToTop = dynamic(() => import("./components/helper/scroll-to-top"), { ssr: false });
 
 export default async function Home() {
@@ -16,14 +15,12 @@ export default async function Home() {
   try {
     const res = await fetch(
       `https://dev.to/api/articles?username=${personalData.devUsername}`,
-      { next: { revalidate: 60 } } // Enable ISR
+      { next: { revalidate: 60 } }
     );
 
     if (res.ok) {
       const data = await res.json();
       blogs = data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
-    } else {
-      console.error("Failed to fetch blogs");
     }
   } catch (error) {
     console.error("Error fetching blogs:", error);
@@ -37,7 +34,7 @@ export default async function Home() {
       <Skills />
       <Projects />
       <Education />
-      {/* Uncomment this section once you add the Blog component */}
+      {/* Uncomment the Blog section once it's ready */}
       {/* blogs.length > 0 && <Blog blogs={blogs} /> */}
       <ContactSection />
       <ScrollToTop />
