@@ -6,7 +6,10 @@ import Experience from "./components/homepage/experience";
 import HeroSection from "./components/homepage/hero-section";
 import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
-import ScrollToTop from "./components/helper/scroll-to-top";
+import dynamic from "next/dynamic";
+
+// Dynamically import ScrollToTop for client-side rendering only
+const ScrollToTop = dynamic(() => import("./components/helper/scroll-to-top"), { ssr: false });
 
 async function getData() {
   try {
@@ -20,6 +23,7 @@ async function getData() {
     }
 
     const data = await res.json();
+    // Filter articles with cover images and shuffle them randomly
     return data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
   } catch (error) {
     console.error("Error fetching blogs:", error);
@@ -39,8 +43,9 @@ export default async function Home() {
       <Projects />
       <Education />
       {/* Uncomment the Blog section once it's ready */}
-      {/* <Blog blogs={blogs} /> */}
+      {/* blogs.length > 0 && <Blog blogs={blogs} /> */}
       <ContactSection />
+      <ScrollToTop />
     </>
   );
 }
