@@ -11,25 +11,24 @@ import dynamic from "next/dynamic";
 // Dynamically import ScrollToTop for client-side rendering only
 const ScrollToTop = dynamic(() => import("./components/helper/scroll-to-top"), { ssr: false });
 
-export async function getStaticProps() {
+export default async function Home() {
   let blogs = [];
   try {
-    const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`);
+    const res = await fetch(
+      `https://dev.to/api/articles?username=${personalData.devUsername}`,
+      { next: { revalidate: 60 } } // Enable ISR
+    );
+
     if (res.ok) {
       const data = await res.json();
       blogs = data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
+    } else {
+      console.error("Failed to fetch blogs");
     }
   } catch (error) {
     console.error("Error fetching blogs:", error);
   }
 
-  return {
-    props: { blogs },
-    revalidate: 60, // ISR (Incremental Static Regeneration)
-  };
-}
-
-export default function Home({ blogs }) {
   return (
     <>
       <HeroSection />
