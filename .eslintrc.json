@@ -1,3 +1,16 @@
+
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["eslint:recommended", "plugin:@next/next/recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true
+  },
+  "overrides": [
+    {
+      "files": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"]
+    }
+  ]
 }

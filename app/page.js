@@ -11,29 +11,25 @@ import dynamic from "next/dynamic";
 // Dynamically import ScrollToTop for client-side rendering only
 const ScrollToTop = dynamic(() => import("./components/helper/scroll-to-top"), { ssr: false });
 
-async function getData() {
+export async function getStaticProps() {
+  let blogs = [];
   try {
-    const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`, {
-      next: { revalidate: 60 }, // Optional: ISR (Incremental Static Regeneration)
-    });
-
-    if (!res.ok) {
-      console.error("Failed to fetch blogs");
-      return [];
+    const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`);
+    if (res.ok) {
+      const data = await res.json();
+      blogs = data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
     }
-
-    const data = await res.json();
-    // Filter articles with cover images and shuffle them randomly
-    return data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
   } catch (error) {
     console.error("Error fetching blogs:", error);
-    return [];
   }
+
+  return {
+    props: { blogs },
+    revalidate: 60, // ISR (Incremental Static Regeneration)
+  };
 }
 
-export default async function Home() {
-  const blogs = await getData();
-
+export default function Home({ blogs }) {
   return (
     <>
       <HeroSection />
@@ -42,7 +38,7 @@ export default async function Home() {
       <Skills />
       <Projects />
       <Education />
-      {/* Uncomment the Blog section once it's ready */}
+      {/* Uncomment this section once you add the Blog component */}
       {/* blogs.length > 0 && <Blog blogs={blogs} /> */}
       <ContactSection />
       <ScrollToTop />
