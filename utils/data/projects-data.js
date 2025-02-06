@@ -40,7 +40,7 @@ export const projectsData = [
         description: "Responsive and interactive personal portfolio website designed using HTML, CSS, and JavaScript to showcase skills, projects, and achievements with modern aesthetics and functionality.",
         tools: ['Html', 'CSS', 'JavaScript'],
         code: 'https://github.com/thanigaivel0721/Portfolio.git',
-        //demo: 'https://thanigaivel0721.github.io/Portfolio/',
+        demo: 'https://thanigaivel0721portfolio.netlify.app/',
         image: ayla,
         role: 'Front-end Developer',
     }
